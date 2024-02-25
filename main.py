@@ -36,4 +36,3 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-uvicorn.run(app,port=8081)
