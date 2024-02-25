@@ -1,8 +1,6 @@
 import json
-from whatsapp_utils import (
-    process_whatsapp_message,
-    is_valid_whatsapp_message,
-)
+from whatsapp_utils import process_whatsapp_message,is_valid_whatsapp_message
+
 
 
 def handle_message(body):
