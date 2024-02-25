@@ -2,13 +2,6 @@ import json
 import requests
 import re
 
-def log_http_response(response):
-    '''
-    logging.info(f"Status: {response.status_code}")
-    logging.info(f"Content-type: {response.headers.get('content-type')}")
-    logging.info(f"Body: {response.text}")
-    '''
-
 
 def get_text_message_input(recipient, text):
     return json.dumps(
