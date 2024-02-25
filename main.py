@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+import uvicorn
 app=FastAPI(title="Testing")
 
 
@@ -22,5 +22,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-if(__name__=="__app_"):
-    uvicorn.run(app,port=8080)
+if(__name__=="__main__"):
+    uvicorn.run(app,host=0.0.0.0,port=8080)
