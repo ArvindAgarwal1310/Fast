@@ -12,6 +12,7 @@ def read_root():
 
 @app.get("/webhook")
 def webhook_get(request: Request):
+    print("request",request)
     raw_body = request.body()
     raw_body = json.loads(raw_body)
     print(raw_body)
