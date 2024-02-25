@@ -1,14 +1,24 @@
-from fastapi import FastAPI
+import json
+from fastapi import FastAPI,Request
+from views import verify,handle_message
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-app=FastAPI(title="Testing")
 
+app=FastAPI(title="Data Dine")
 
-# initating app
-app = FastAPI(title="Paper Brokerage & Data",redoc_url=None)
-@app.get("/")
-def read_root():
-    return {"message": "Invsto - Paper Brokerage & Data "}
+@app.get("/webhook")
+async def webhook_get(request: Request):
+    raw_body = await request.body()
+    raw_body = json.loads(raw_body)
+    print(raw_body)
+    return verify(raw_body)
 
+@app.post("/webhook")
+async def webhook_post(request: Request):
+    raw_body = await request.body()
+    raw_body=json.loads(raw_body)
+    print(raw_body)
+    return handle_message(body=raw_body)
 
 # creating origin list
 origins = ['*']
@@ -21,4 +31,5 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-uvicorn.run(app,host="0.0.0.0",port=8000)
+
+uvicorn.run(app,port=8081)
