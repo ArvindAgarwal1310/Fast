@@ -11,15 +11,15 @@ def read_root():
     return {"message": "DataDive -Data "}
 
 @app.get("/webhook")
-async def webhook_get(request: Request):
-    raw_body = await request.body()
+def webhook_get(request: Request):
+    raw_body = request.body()
     raw_body = json.loads(raw_body)
     print(raw_body)
     return verify(raw_body)
 
 @app.post("/webhook")
-async def webhook_post(request: Request):
-    raw_body = await request.body()
+def webhook_post(request: Request):
+    raw_body = request.body()
     raw_body=json.loads(raw_body)
     print(raw_body)
     return handle_message(body=raw_body)
